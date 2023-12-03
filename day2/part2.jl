@@ -38,7 +38,13 @@ function find_power(game::Vector{String})::Int
     return mins["red"] * mins["green"] * mins["blue"]
 end
 
-function compute(filename::String, limits::Dict{String, Int})::Int
+function compute(filename::String)::Int
+    games::Vector{Vector{String}} = extract_gameinfo(filename)
+    sum = 0
+    for game in games
+        sum += find_power(game)
+    end
+    return sum
 end
 
 end
