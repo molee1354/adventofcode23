@@ -14,8 +14,8 @@ class Part1:
     def extract_gameinfo(self) -> list[list[str]]:
         lines = self.parse_file()
         out = []
+        pattern = re.compile(r"[0-9]+|red|green|blue")
         for line in lines:
-            pattern = re.compile(r"[0-9]+|red|green|blue")
             result = pattern.findall(line)
             out.append(result)
         return out
