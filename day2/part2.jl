@@ -1,6 +1,5 @@
 module Part2
 
-using Base: RegexMatchIterator
 export compute
 
 function parse_file(filename::String)::Vector{String}
