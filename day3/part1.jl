@@ -11,6 +11,8 @@ end
 mutable struct Clues
     all_parts::Vector{Number}
     all_symbols::Vector{Int}
+    width::Int
+    height::Int
 end
 
 function parse_file(filename::String)::Vector{String}
@@ -27,7 +29,9 @@ function get_coords(lines::Vector{String})::Clues
     out_parts::Vector{Number} = []
     out::Clues = Clues(
         out_parts,
-        Vector{Vector{Int}}[]
+        Vector{Vector{Int}}[],
+        length(lines),
+        length(lines[0])
     )
     for (line_num, line) in enumerate(lines)
         cursor = 1
@@ -53,7 +57,6 @@ function get_coords(lines::Vector{String})::Clues
                 cursor += 1
                 number_start = cursor
             else # for symbol
-                # push!(out.all_symbols, Vector{Int}([line_num, cursor]))
                 push!(out.all_symbols, line_num, cursor)
                 number_str = ""
                 cursor += 1
@@ -84,8 +87,8 @@ function search_around(x::Int, y::Int, dim_x::Int, dim_y::Int)::Vector{Int}
     return out
 end
 
-function is_valid_part(x, y, Vector{Number})::Bool
-    
+function get_valid_parts(state::Clues)::Vector{Int}
+    check_coords::Vector{Int} = search_around(x, y, state.width, state.height)
 end
 
 function compute(filename::String)
