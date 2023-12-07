@@ -1,10 +1,11 @@
 include("./part1.jl")
 
-using Printf
 using .Part1
 
 function do_part1()
-    Part1.compute(ARGS[1])
+    answer::Answer = Part1.compute(ARGS[1])
+    println("Part 1: $(answer.part1)")
+    println("Part 2: $(answer.part2)")
 end
 
 
